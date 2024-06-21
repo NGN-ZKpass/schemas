@@ -1,0 +1,38 @@
+{
+    "issuer": "NIMC Portal",
+    "desc": "An API for user authentication and access token generation.",
+    "website": "https://myportal.nimc.gov.ng",
+    "APIs": [
+        {
+            "host": "v1.ibib.io:7070",
+            "intercept": {
+                "url": "api/v1/dashboard/device/getMobileNumbers",
+                "method": "GET"
+            },
+            "override": {
+                "url": "api/v1/dashboard/device/getMobileNumbers",
+                "query": [
+                    {
+                        "limit": "1"
+                    }
+                ]
+            },
+            "assert": [
+                {
+                    "key": "success",
+                    "value": "true",
+                    "operation": "="
+                }
+            ],
+            "nullifier": "data|response|0|msisdn"
+        }
+    ],
+    "HRCondition": [
+        "NIMC Account Owner"
+    ],
+    "tips": {
+        "message": "1. Login to your NIMC portal\n2. Scroll down and click 'Link Mobile Number'\n3. Click the 'Start' button to initiate the verification process."
+    },
+    "category": "Legal Identity",
+    "id": "0x63c45011eebe40ab857ff71fedc64102"
+}
